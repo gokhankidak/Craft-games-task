@@ -6,7 +6,7 @@ using UnityEngine;
 public class ObstacleController : MonoBehaviour
 {
     private float animDuration = .15f;
-    private float animStrength = .15f;
+    private float animStrength = 15f;
     private void OnCollisionEnter(Collision other)
     {
         AnimateHit();
