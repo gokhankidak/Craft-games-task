@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class ObstacleController : MonoBehaviour
 {
-    
+    private float animDuration = .15f;
+    private float animStrength = .15f;
     private void OnCollisionEnter(Collision other)
     {
         AnimateHit();
@@ -15,7 +16,7 @@ public class ObstacleController : MonoBehaviour
     {
         var localAngles = transform.localEulerAngles;
         var seq = DOTween.Sequence();
-        seq.Append(transform.DOLocalRotate(localAngles - Vector3.right * 15, .15f).SetEase(Ease.InBounce))
-            .Append(transform.DORotate(localAngles, .15f).SetEase(Ease.InBounce));
+        seq.Append(transform.DOLocalRotate(localAngles - Vector3.right * animStrength, animDuration).SetEase(Ease.InBounce))
+            .Append(transform.DORotate(localAngles, animDuration).SetEase(Ease.InBounce));
     }
 }

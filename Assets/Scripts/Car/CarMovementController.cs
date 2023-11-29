@@ -20,14 +20,24 @@ public class CarMovementController : MonoBehaviour
 
     private void Start()
     {
-        globalCarSize = transform.eulerAngles.y % 180 == 0 ? carSize : new Vector2Int(carSize.y, carSize.x);//car size according to rotation
-        centerAndFirstGridDif = new Vector3((globalCarSize.x - 1) / 2f,0,(globalCarSize.y - 1) / 2f);//first grid and transform center position difference
-        
+        SetInitialValues();
+    }
+
+    private void SetInitialValues()
+    {
+        globalCarSize =
+            transform.eulerAngles.y % 180 == 0
+                ? carSize
+                : new Vector2Int(carSize.y, carSize.x); //car size according to rotation
+        centerAndFirstGridDif =
+            new Vector3((globalCarSize.x - 1) / 2f, 0,
+                (globalCarSize.y - 1) / 2f); //first grid and transform center position difference
+
         moveSpeed = carSettings.speed;
         isVertical = transform.eulerAngles.y % 180 != 0;
         gridSize = gameSettings.gridSize;
     }
-    
+
     public void MoveCar(Vector2Int dir)
     {
         if (isMoving) return;
