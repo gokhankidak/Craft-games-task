@@ -6,7 +6,7 @@ public class CarInputController : MonoBehaviour
     private CarMovementController movementController;
     private Vector3 touchStartPos;
     private bool isSwiping;
-    private  float swipeThreshold = 10f;
+    private const float SwipeThreshold = 10f;
 
     private void Awake()
     {
@@ -51,8 +51,8 @@ public class CarInputController : MonoBehaviour
 
     private bool IsAboveThreshold(Vector3 mousePos)
     {
-        if (Mathf.Abs(touchStartPos.x - mousePos.x) > swipeThreshold) return true;
-        if (Mathf.Abs(touchStartPos.y - mousePos.y) > swipeThreshold) return true;
+        if (Mathf.Abs(touchStartPos.x - mousePos.x) > SwipeThreshold) return true;
+        if (Mathf.Abs(touchStartPos.y - mousePos.y) > SwipeThreshold) return true;
 
         return false;
     }

@@ -3,7 +3,9 @@ guid: b2e9f3d4d052d574ba0fb364e9f59b66
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - carSettings: {fileID: 11400000, guid: 48503201bacfe4143b29aa2df8ec4fe8, type: 2}
+  - gameSettings: {fileID: 11400000, guid: f88ef3b28ea0dbd4db45663473b55b5c, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

@@ -1,10 +1,9 @@
 fileFormatVersion: 2
-guid: aca2dde380279a34f93ad0d021f9f3ea
+guid: 76d80af871a1cce47abee92240997a67
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences:
-  - roadSettings: {fileID: 11400000, guid: 1ea4195ec53935c47b4b27f35cace689, type: 2}
+  defaultReferences: []
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

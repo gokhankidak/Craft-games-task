@@ -6,7 +6,11 @@ public class RoadManager : MonoBehaviour
 {
     [SerializeField] private List<Road> roads;
     [SerializeField] private RoadSettingsSO roadSettings;
-
+    [SerializeField] private float durationMultiplier = 3;
+    
+    /// <summary>
+    /// Road take all car movement control
+    /// </summary>
     public void MoveAlongRoadPath(Road road,Vector3 hitPos,Transform car)
     {
         var roadIndex = roads.IndexOf(road);
@@ -14,19 +18,21 @@ public class RoadManager : MonoBehaviour
         var sequence = DOTween.Sequence();
         var rotateDuration = roadSettings.rotateDuration;
         var singleGridDuration = roadSettings.moveSingleGridDuration;
-
+        var yOffset = car.position.y * Vector3.up;
+        
         //add sequence to hit to end point
-        sequence.Append(car.DOMove(closestPoint, singleGridDuration))
-            .Join(car.DOLocalRotate(road.transform.eulerAngles, rotateDuration))
-            .Append(car.DOMove(road.endPoint, singleGridDuration * road.transform.lossyScale.magnitude));
+        sequence.Append(car.DOMove(closestPoint + yOffset , singleGridDuration))
+            .Join(car.DORotate(road.transform.eulerAngles, rotateDuration))
+            .Append(car.DOMove(road.endPoint + yOffset , singleGridDuration * road.transform.lossyScale.z * durationMultiplier));
         
         for (int i = roadIndex + 1; i < roads.Count; i++)
         {
             var currentRoad = roads[i];
             
-            sequence.Append(car.DOMove(currentRoad.startPoint, singleGridDuration))
-                .Join(car.DOLocalRotate(currentRoad.transform.eulerAngles, rotateDuration))
-                .Append(car.DOMove(currentRoad.endPoint, singleGridDuration * currentRoad.transform.localScale.magnitude));
+            sequence.Append(car.DOMove(currentRoad.startPoint + yOffset , singleGridDuration))
+                .Join(car.DORotate(currentRoad.transform.eulerAngles, rotateDuration));
+                
+            sequence.Append(car.DOMove(currentRoad.endPoint + yOffset  , singleGridDuration * currentRoad.transform.lossyScale.z * durationMultiplier));
         }
     }
     

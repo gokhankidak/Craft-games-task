@@ -3,7 +3,12 @@ guid: 01a089e51fd93ce43ad28d53ba6230bc
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - gameSettings: {fileID: 11400000, guid: f88ef3b28ea0dbd4db45663473b55b5c, type: 2}
+  - roadManager: {instanceID: 0}
+  - settingsSo: {fileID: 11400000, guid: 48503201bacfe4143b29aa2df8ec4fe8, type: 2}
+  - endTransform: {instanceID: 0}
+  - startTransform: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

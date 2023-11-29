@@ -7,5 +7,5 @@ using UnityEngine.Serialization;
 public class CarSettingsSO : ScriptableObject
 {
     public float speed;
-    [FormerlySerializedAs("goBackDuration")] public float movementDuration;
+    public float movementDuration;
 }

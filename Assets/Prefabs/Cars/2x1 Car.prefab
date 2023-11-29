@@ -129,6 +129,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   carSize: {x: 1, y: 2}
   carSettings: {fileID: 11400000, guid: 48503201bacfe4143b29aa2df8ec4fe8, type: 2}
+  gameSettings: {fileID: 11400000, guid: f88ef3b28ea0dbd4db45663473b55b5c, type: 2}
 --- !u!54 &-4526843915452262734
 Rigidbody:
   m_ObjectHideFlags: 0
