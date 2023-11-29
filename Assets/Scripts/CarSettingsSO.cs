@@ -8,4 +8,6 @@ public class CarSettingsSO : ScriptableObject
 {
     public float speed;
     public float movementDuration;
+    public float onHitShakeDuration;
+    public float onHitShakeMultiplier;
 }

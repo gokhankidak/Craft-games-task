@@ -32,7 +32,7 @@ public class LevelManager : MonoBehaviour
 
     private void OnNewLevelStart()
     {
-        if(spawnPos.childCount > 0 ) Destroy(spawnPos.GetChild(0));
+        if(spawnPos.childCount > 0 ) Destroy(spawnPos.GetChild(0).gameObject);
         var nextLevelIndex = gameManager.level % levels.Capacity;
         var nextLevel = levels[nextLevelIndex];
         Instantiate(nextLevel, spawnPos);

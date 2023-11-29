@@ -60,11 +60,18 @@ public class CarMovementController : MonoBehaviour
         }
     }
 
+    private void OnHit(Vector3 hitCarPos)
+    {
+        var shakeDir = Vector3.Cross((hitCarPos - transform.position),Vector3.up);
+        transform.DOShakeRotation(carSettings.onHitShakeDuration, shakeDir * carSettings.onHitShakeMultiplier);
+    }
+    
     private void OnExitPark(Road road)
     {
         hasExited = true;
         isMoving = false;
-
+        gameObject.layer = LayerMask.NameToLayer("ExitingCar");
+        
         DOTween.Kill(this);
         var roadManager = road.roadManager;
         roadManager.MoveAlongRoadPath(road, transform.position, transform);
@@ -72,6 +79,11 @@ public class CarMovementController : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
+        if(!isMoving)
+        {
+            OnHit(other.transform.position);
+            return;
+        }
         if (other.gameObject.layer == LayerMask.NameToLayer("Car") ||
             other.gameObject.layer == LayerMask.NameToLayer("Obstacle"))
         {
@@ -82,19 +94,19 @@ public class CarMovementController : MonoBehaviour
 
     private void MoveClosestGrid()
     {
+        transform.DOMove(GetClosestGrid(), carSettings.movementDuration);
         moveDir = Vector3.zero;
         DOTween.Kill(this);
-        transform.DOMove(GetClosestGrid(), carSettings.movementDuration);
     }
 
     private Vector3 GetClosestGrid()
     {
         var firstGridPos = transform.position - centerAndFirstGridDif;
-        
-        float snappedX = Mathf.Round(firstGridPos.x / gridSize) * gridSize;
-        float snappedZ = Mathf.Round(firstGridPos.z / gridSize) * gridSize;
+        var snappedX = Mathf.Round(firstGridPos.x / gridSize) * gridSize;
+        var snappedZ = Mathf.Round(firstGridPos.z / gridSize) * gridSize;
 
-        var snappedPos = new Vector3(snappedX, firstGridPos.y, snappedZ);
+        var goBackStepOffset = moveDir * gridSize;
+        var snappedPos = new Vector3(snappedX, firstGridPos.y, snappedZ) - goBackStepOffset;
 
         return snappedPos + centerAndFirstGridDif;
     }

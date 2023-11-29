@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23850c3f6a4be9145a0921d60eb6e8d1, type: 3}
   m_Name: RoadSettingsSO
   m_EditorClassIdentifier: 
-  rotateDuration: 0.3
-  moveSingleGridDuration: 0.3
+  rotateDuration: 0.2
+  moveSingleGridDuration: 0.2
